@@ -2,7 +2,7 @@ import { jsonSecret } from "../config/jsonSecret.js";
 import jsonwebtoken from "jsonwebtoken";
 
 export const authenticated = (req, res, next) => {
-    const authHeaders = req.headers.authorization
+    const authHeaders = req.headers.authorization;
 
     if (!authHeaders) {
         return res.status(401).json({ message: 'No token, authorization denied' });

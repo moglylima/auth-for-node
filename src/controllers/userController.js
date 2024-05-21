@@ -12,7 +12,7 @@ const userController = {
                 const user = await userService.createUser({
                     email,
                     password: await bcrypt.hash(password, 10),
-                    role,
+                    role: role || 'student',
                 });
                 res.status(201).json(user);
             }

@@ -1,8 +1,7 @@
+import { Router } from "express";
 import userController from "../controllers/userController.js";
 import { authenticated } from "../middlewares/authenticated.js";
-
-import { Router } from "express";
-
+import authorized from "../middlewares/authorized.js";
 
 const userRouter = Router();
 
@@ -11,7 +10,7 @@ userRouter
     .get('/users/:email', authenticated, userController.getUserByEmail)
     .get('/users/:id', authenticated, userController.getUserById)
     .put('/users/:id', authenticated, userController.updateUser)
-    .delete('/users/:id', authenticated, userController.deleteUser)
-    .get('/users', authenticated, userController.getAllUsers);
+    .delete('/users/:id', authenticated, authorized("admin"), userController.deleteUser)
+    .get('/users', authenticated, authorized("admin"), userController.getAllUsers);
 
 export default userRouter;
