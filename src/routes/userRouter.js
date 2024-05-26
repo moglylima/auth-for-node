@@ -11,6 +11,6 @@ userRouter
     .get('/users/:id', authenticated, userController.getUserById)
     .put('/users/:id', authenticated, userController.updateUser)
     .delete('/users/:id', authenticated, authorized("admin"), userController.deleteUser)
-    .get('/users', authenticated, authorized("admin"), userController.getAllUsers);
+    .get('/users', authenticated, authorized(["admin", "prof", "monitor"]), userController.getAllUsers);
 
 export default userRouter;

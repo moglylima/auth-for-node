@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
     }
-
 });
 
 const userModel = mongoose.model('users', userSchema);
